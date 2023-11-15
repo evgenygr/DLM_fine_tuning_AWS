@@ -21,8 +21,15 @@ resource "aws_security_group" "LLMResearchSecurityGroup" {
   name        = "LLMResearchSecurityGroup"
   description = "default VPC security group"
   vpc_id      = aws_vpc.LLMResearchVPC.id
-  egress {
+  ingress {
     description = "permit all in"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = [aws_vpc.LLMResearchVPC.cidr_block]
+  }
+  egress {
+    description = "permit all out"
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
