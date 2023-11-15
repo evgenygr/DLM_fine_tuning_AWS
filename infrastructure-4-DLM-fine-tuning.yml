@@ -55,7 +55,7 @@ Resources:
       ComputeEnvironmentName: LLMResearchComputeEnv  # the attempt to update the stack on CloudFormation
       # raises an error "Cannot update custom-named Compute environment
       ComputeResources:
-        AllocationStrategy: BEST_FIT_PROGRESSIVE  # default value (BEST_FIT) makes a job stuck in Runnable state
+        AllocationStrategy: BEST_FIT_PROGRESSIVE
         DesiredvCpus: 1  # For some reason, after stack deployment and after job run this value drops to 0,
         # so one needs to return it to 1 manually after each job run
         MaxvCpus: 1
@@ -78,7 +78,7 @@ Resources:
       ReplaceComputeEnvironment: true
       State: ENABLED
       Type: MANAGED
-      UpdatePolicy:
+      UpdatePolicy:  # didn't find a corresponding parameter in terraform
         JobExecutionTimeoutMinutes: 30
         TerminateJobsOnUpdate: false
   LLMResearchJobQueue:
